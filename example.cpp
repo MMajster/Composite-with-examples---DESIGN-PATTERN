@@ -1,17 +1,17 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-
-// Abstrakcyjna klasa komponentu, reprezentuje wspólny interfejs
+#include <algorithm>
+// Abstrakcyjna klasa komponentu, reprezentuje wspÃ³lny interfejs
 class MenuComponent {
 public:
-    virtual void display() const = 0; // Metoda do wyœwietlania elementu menu
+    virtual void display() const = 0; // Metoda do wyÅ“wietlania elementu menu
     virtual void add(std::shared_ptr<MenuComponent> component) {}
     virtual void remove(std::shared_ptr<MenuComponent> component) {}
     virtual ~MenuComponent() = default;
 };
 
-// Klasa liœcia (Leaf), czyli konkretna pozycja w menu
+// Klasa liÅ“cia (Leaf), czyli konkretna pozycja w menu
 class MenuItem : public MenuComponent {
     std::string name;
 public:
@@ -21,7 +21,7 @@ public:
     }
 };
 
-// Klasa kompozytu (Composite), czyli menu mog¹ce zawieraæ inne elementy
+// Klasa kompozytu (Composite), czyli menu mogÂ¹ce zawieraÃ¦ inne elementy
 class Menu : public MenuComponent {
     std::string name;
     std::vector<std::shared_ptr<MenuComponent>> components; // Przechowuje elementy menu
@@ -44,7 +44,7 @@ public:
     }
 };
 
-// Przyk³adowe u¿ycie
+// PrzykÂ³adowe uÂ¿ycie
 int main() {
     auto mainMenu = std::make_shared<Menu>("Main Menu");
     auto fileMenu = std::make_shared<Menu>("File");
@@ -61,7 +61,7 @@ int main() {
     mainMenu->add(fileMenu);
     mainMenu->add(editMenu);
 
-    mainMenu->display(); // Wyœwietla ca³e menu
+    mainMenu->display(); // WyÅ“wietla caÂ³e menu
 
     return 0;
 }
